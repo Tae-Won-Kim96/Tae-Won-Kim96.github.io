@@ -1,280 +1,110 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tae-Won Kim — AI Research</title>
-  <meta name="description" content="Tae-Won Kim — AI researcher at Korea University PRML Lab. Research on inference-time control, activation steering, and LLM reasoning." />
-  <meta property="og:title" content="Tae-Won Kim — AI Research" />
-  <meta property="og:description" content="Inference-time control and reasoning in large language models." />
-  <meta property="og:type" content="website" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tae-Won Kim — AI research resume. Integrated M.S./Ph.D. student at Korea University PRML Lab researching LLM reasoning and inference-time control.">
+  <title>Tae-Won Kim | AI Research Resume</title>
   <style>
-    :root{
-      --bg:#061014;
-      --bg2:#081a20;
-      --panel:rgba(12,31,38,.76);
-      --panel2:rgba(14,40,48,.72);
-      --text:#f3f7f8;
-      --muted:#9fb1b6;
-      --line:rgba(255,255,255,.10);
-      --cyan:#4ee7ff;
-      --blue:#5d7cff;
-      --green:#57f0b6;
-      --purple:#a97cff;
-      --shadow:0 18px 60px rgba(0,0,0,.26);
-      --radius:22px;
-    }
+    :root{--ink:#172332;--muted:#526276;--blue:#145e9a;--line:#d9e2ea;--wash:#f4f8fb;--paper:#fff}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 14% 0%, rgba(78,231,255,.10), transparent 28%),
-        radial-gradient(circle at 88% 14%, rgba(93,124,255,.12), transparent 26%),
-        linear-gradient(180deg,var(--bg),#040a0d 72%);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height:1.55;
-    }
-    a{color:inherit;text-decoration:none}
-    .shell{width:min(1160px,calc(100% - 36px));margin:auto}
-    nav{
-      position:sticky;top:0;z-index:10;
-      backdrop-filter:blur(16px);
-      background:rgba(4,10,13,.72);
-      border-bottom:1px solid var(--line);
-    }
-    .nav-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .brand{font-weight:800;letter-spacing:-.02em}
-    .brand span{color:var(--cyan)}
-    .nav-links{display:flex;gap:22px;color:var(--muted);font-size:14px}
-    .nav-links a:hover{color:var(--text)}
-    .hero{padding:105px 0 68px}
-    .kicker{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:#c8d5d9;background:rgba(255,255,255,.025);font-size:13px}
-    .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 18px var(--green)}
-    h1{font-size:clamp(54px,8vw,104px);line-height:.94;letter-spacing:-.055em;margin:22px 0 24px;max-width:940px}
-    .gradient-text{background:linear-gradient(90deg,#fff 0%,#d7f8ff 45%,#7ceaff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero-copy{max-width:780px;color:#c5d2d6;font-size:clamp(19px,2.4vw,27px);letter-spacing:-.015em}
-    .hero-copy strong{color:#fff}
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 17px;border-radius:12px;border:1px solid var(--line);font-weight:700;font-size:14px;transition:.2s ease}
-    .btn.primary{background:linear-gradient(135deg,#0f8ca8,#3866ff);border-color:transparent;box-shadow:0 10px 35px rgba(54,102,255,.22)}
-    .btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22)}
-    .btn.primary:hover{filter:brightness(1.08)}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
-    .chip{font-size:13px;color:#b8c6ca;border:1px solid var(--line);padding:8px 11px;border-radius:10px;background:rgba(255,255,255,.02)}
-    section{padding:44px 0}
-    .section-title{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}
-    .section-title h2{margin:0;font-size:clamp(30px,4vw,46px);letter-spacing:-.035em}
-    .section-title p{margin:0;color:var(--muted);max-width:560px}
-    .card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(15,35,42,.86),rgba(8,23,28,.76));border-radius:var(--radius);box-shadow:var(--shadow)}
-    .featured{display:grid;grid-template-columns:1.02fr .98fr;overflow:hidden}
-    .feature-copy{padding:42px}
-    .label{color:var(--cyan);font-weight:800;font-size:12px;letter-spacing:.11em;text-transform:uppercase}
-    .feature-copy h3{font-size:clamp(31px,4.5vw,54px);letter-spacing:-.045em;line-height:1.04;margin:12px 0 18px}
-    .feature-copy p{color:#bccbd0;font-size:17px;margin:0 0 18px}
-    .metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:26px 0 6px}
-    .metric{padding:15px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid var(--line)}
-    .metric b{display:block;font-size:25px;letter-spacing:-.03em}
-    .metric span{font-size:12px;color:var(--muted)}
-    .feature-visual{position:relative;min-height:480px;padding:32px;background:
-      radial-gradient(circle at 70% 35%,rgba(78,231,255,.13),transparent 28%),
-      radial-gradient(circle at 22% 76%,rgba(93,124,255,.16),transparent 26%),
-      linear-gradient(160deg,#07151a,#071116)}
-    .visual-title{font-size:12px;color:#8fa4aa;letter-spacing:.09em;text-transform:uppercase;margin-bottom:20px}
-    .flow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:26px}
-    .node{flex:1;min-height:104px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:16px;padding:14px;position:relative;overflow:hidden}
-    .node small{color:#8fa4aa;display:block;margin-bottom:7px}
-    .node strong{font-size:16px}
-    .arrow{color:var(--cyan);font-size:25px;opacity:.75}
-    .state-bars{display:flex;gap:4px;align-items:end;height:46px;margin-top:11px}
-    .state-bars i{display:block;width:7px;border-radius:99px;background:linear-gradient(180deg,var(--cyan),var(--blue));opacity:.88;animation:pulse 1.8s ease-in-out infinite alternate}
-    .state-bars i:nth-child(2){animation-delay:.2s}.state-bars i:nth-child(3){animation-delay:.4s}.state-bars i:nth-child(4){animation-delay:.6s}.state-bars i:nth-child(5){animation-delay:.8s}.state-bars i:nth-child(6){animation-delay:1s}
-    @keyframes pulse{from{transform:scaleY(.62);filter:brightness(.8)}to{transform:scaleY(1.08);filter:brightness(1.2)}}
-    .update-line{height:3px;border-radius:10px;background:linear-gradient(90deg,var(--green),var(--cyan),var(--blue));margin-top:19px;position:relative;overflow:hidden}
-    .update-line:after{content:"";position:absolute;inset:-3px auto -3px -20%;width:30%;background:linear-gradient(90deg,transparent,white,transparent);opacity:.6;animation:sweep 2.2s linear infinite}
-    @keyframes sweep{to{left:110%}}
-    .caption{margin-top:26px;color:#a9bac0;font-size:14px}
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .mini{padding:26px;min-height:220px}
-    .mini h4{font-size:21px;margin:12px 0 10px;letter-spacing:-.025em}
-    .mini p{color:var(--muted);margin:0}
-    .icon{font-size:24px}
-    .pub{padding:28px;display:flex;gap:20px;align-items:flex-start}
-    .pub-year{font-weight:900;color:var(--cyan);min-width:56px}
-    .pub h4{margin:0 0 8px;font-size:19px;line-height:1.35}
-    .pub p{margin:0;color:var(--muted)}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .info{padding:28px}
-    .info h4{margin:0 0 12px;font-size:21px}
-    .info ul{margin:0;padding-left:19px;color:#b7c6ca}
-    .info li{margin:8px 0}
-    footer{padding:56px 0 70px;color:#8ea0a6}
-    .footer-inner{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:24px}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
-    @media (max-width:860px){
-      .nav-links{display:none}
-      .hero{padding-top:76px}
-      .featured,.split{grid-template-columns:1fr}
-      .feature-visual{min-height:380px}
-      .grid3{grid-template-columns:1fr}
-      .metric-row{grid-template-columns:1fr}
-      .section-title{display:block}.section-title p{margin-top:10px}
-      .flow{flex-direction:column;align-items:stretch}.arrow{transform:rotate(90deg);text-align:center}
-      .footer-inner{display:block}
-    }
+    body{margin:0;background:#eaf0f5;color:var(--ink);font:16px/1.55 Inter,Arial,Helvetica,sans-serif}
+    a{color:var(--blue);text-underline-offset:3px}
+    a:hover{color:#0a416d}
+    .page{width:min(980px,calc(100% - 32px));margin:32px auto;background:var(--paper);box-shadow:0 18px 55px #233b541a;padding:52px 62px 60px}
+    .top{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;border-bottom:3px solid var(--blue);padding-bottom:25px}
+    .eyebrow{color:var(--blue);font-size:.77rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+    h1{font-size:clamp(2.5rem,6vw,4.1rem);letter-spacing:-.06em;line-height:1.02;margin:8px 0 12px}
+    .headline{max-width:650px;margin:0;color:var(--muted);font-size:1.09rem}
+    .contact{display:flex;flex-direction:column;align-items:flex-end;gap:6px;font-size:.9rem;white-space:nowrap;padding-top:5px}
+    .contact a{text-decoration:none}
+    .intro{padding:27px 0 5px;font-size:1.04rem;max-width:790px}
+    .intro p{margin:0}
+    section{padding-top:27px}
+    h2{font-size:1.03rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:8px;margin:0 0 16px}
+    h3{font-size:1.13rem;line-height:1.3;margin:0 0 5px}
+    .row{display:flex;justify-content:space-between;gap:18px;align-items:baseline}
+    .date{white-space:nowrap;color:var(--muted);font-size:.88rem}
+    .sub{color:var(--muted);margin:1px 0 11px}
+    ul{margin:9px 0 0;padding-left:21px}
+    li{margin:7px 0}
+    .project{border-left:3px solid var(--blue);padding:2px 0 2px 17px;margin-top:18px}
+    .project:first-of-type{margin-top:0}
+    .tag{font-size:.73rem;font-weight:800;letter-spacing:.09em;color:var(--blue);text-transform:uppercase}
+    .links{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:.9rem;font-weight:650}
+    .pub{padding:18px 20px;background:var(--wash);border:1px solid var(--line);border-radius:8px}
+    .pub p{margin:4px 0}
+    .pub .title{font-weight:750}
+    .skills{display:grid;grid-template-columns:150px 1fr;gap:8px 16px}
+    .skills strong{color:var(--ink)}
+    .skills span{color:var(--muted)}
+    .foot{border-top:1px solid var(--line);margin-top:34px;padding-top:13px;color:var(--muted);font-size:.8rem}
+    @media(max-width:680px){.page{width:100%;margin:0;padding:28px 22px;box-shadow:none}.top{display:block}.contact{align-items:flex-start;margin-top:20px;white-space:normal}.row{display:block}.date{display:block;margin-top:2px}.skills{grid-template-columns:1fr;gap:2px}.skills span{margin-bottom:10px}}
+    @media print{@page{size:A4;margin:14mm}body{background:#fff;font-size:10pt;line-height:1.43}.page{width:auto;max-width:none;margin:0;padding:0;box-shadow:none}.top{padding-bottom:14px}h1{font-size:30pt}h2{margin-bottom:10px}section{padding-top:17px}.intro{padding-top:16px}.project,.pub{break-inside:avoid}a{color:var(--blue);text-decoration:none}.foot{margin-top:22px}}
   </style>
 </head>
 <body>
-  <nav>
-    <div class="shell nav-inner">
-      <a class="brand" href="#top">Tae-Won <span>Kim</span></a>
-      <div class="nav-links">
-        <a href="#research">Research</a>
-        <a href="#focus">Focus</a>
-        <a href="#publications">Publication</a>
-        <a href="#contact">Contact</a>
+  <main class="page">
+    <header class="top">
+      <div>
+        <div class="eyebrow">AI Research Resume</div>
+        <h1>Tae-Won Kim</h1>
+        <p class="headline">Integrated M.S./Ph.D. student · Korea University PRML Lab<br>LLM reasoning, inference-time control, and representation analysis</p>
       </div>
-    </div>
-  </nav>
-
-  <main id="top">
-    <header class="hero shell">
-      <div class="kicker"><span class="dot"></span> Korea University · PRML Lab</div>
-      <h1 class="gradient-text">Tae-Won Kim</h1>
-      <p class="hero-copy">I work on <strong>inference-time control and reasoning in large language models</strong>, with a focus on activation steering and model-state-aware intervention.</p>
-      <div class="actions">
-        <a class="btn primary" href="#research">Featured research ↓</a>
-        <a class="btn" href="mailto:taewon_kim@korea.ac.kr">Email</a>
-        <a class="btn" href="https://github.com/Tae-Won-Kim96" target="_blank" rel="noreferrer">GitHub ↗</a>
-      </div>
-      <div class="chips">
-        <span class="chip">LLM Reasoning</span>
-        <span class="chip">Activation Steering</span>
-        <span class="chip">Inference-time Control</span>
-        <span class="chip">Representation Analysis</span>
+      <div class="contact">
+        <a href="mailto:taewon_kim@korea.ac.kr">taewon_kim@korea.ac.kr</a>
+        <a href="https://github.com/Tae-Won-Kim96">github.com/Tae-Won-Kim96</a>
+        <span>Seoul, South Korea</span>
       </div>
     </header>
 
-    <section id="research" class="shell">
-      <div class="section-title">
-        <h2>Featured research</h2>
-        <p>A compact research profile for people I meet at demos, showcases, and conferences.</p>
-      </div>
+    <div class="intro"><p>I study how internal states of language models evolve during reasoning and how inference-time interventions can improve model behavior. My work combines representation analysis, controlled evaluation, and Python-based research pipelines.</p></div>
 
-      <article class="card featured">
-        <div class="feature-copy">
-          <div class="label">State-Conditioned Steering</div>
-          <h3>Steering that evolves with the model’s reasoning state.</h3>
-          <p>Conventional activation steering often reuses one fixed direction throughout generation. My recent work instead recomputes the intervention update from the reasoning state currently being visited.</p>
-          <p>The backbone model remains unchanged; a lightweight predictor estimates the next additive update at reasoning checkpoints during inference.</p>
-          <div class="metric-row">
-            <div class="metric"><b>3</b><span>instruction-tuned backbones</span></div>
-            <div class="metric"><b>3</b><span>reasoning benchmarks</span></div>
-            <div class="metric"><b>9 / 9</b><span>settings improved over prompting-only</span></div>
-          </div>
-          <div class="actions">
-            <a class="btn primary" href="https://github.com/Tae-Won-Kim96/State-Conditioned-Steering" target="_blank" rel="noreferrer">View code ↗</a>
-            <a class="btn" href="#publications">Publication</a>
-          </div>
-        </div>
+    <section id="education">
+      <h2>Education</h2>
+      <div class="row"><h3>Korea University · Integrated M.S./Ph.D. Program</h3><span class="date">Expected graduation: 2029</span></div>
+      <p class="sub">PRML Lab · AI / machine learning research</p>
+    </section>
 
-        <div class="feature-visual" aria-label="Schematic illustration of state-conditioned steering">
-          <div class="visual-title">Inference-time flow</div>
-          <div class="flow">
-            <div class="node">
-              <small>1 · Current reasoning state</small>
-              <strong>Read the model’s internal state</strong>
-              <div class="state-bars">
-                <i style="height:42%"></i><i style="height:75%"></i><i style="height:56%"></i><i style="height:92%"></i><i style="height:63%"></i><i style="height:84%"></i>
-              </div>
-            </div>
-            <div class="arrow">→</div>
-            <div class="node">
-              <small>2 · Predictor</small>
-              <strong>Compute a state-matched update</strong>
-              <div class="update-line"></div>
-            </div>
-            <div class="arrow">→</div>
-            <div class="node">
-              <small>3 · Next generation span</small>
-              <strong>Apply the new direction</strong>
-              <div class="state-bars">
-                <i style="height:68%"></i><i style="height:51%"></i><i style="height:88%"></i><i style="height:66%"></i><i style="height:95%"></i><i style="height:58%"></i>
-              </div>
-            </div>
-          </div>
-          <p class="caption">At the next checkpoint, the model state is read again and the update is refreshed. The intervention changes with the trajectory rather than staying fixed.</p>
-        </div>
+    <section id="research">
+      <h2>Research Experience</h2>
+      <article class="project">
+        <div class="tag">Published research · Findings of EMNLP 2026</div>
+        <h3>State-Conditioned Steering for LLM Reasoning</h3>
+        <ul>
+          <li>Developed an inference-time method that recomputes additive activation updates from the model's evolving hidden states during multi-step reasoning, while keeping the backbone model unchanged.</li>
+          <li>Compared state-conditioned updates with fixed-direction steering and prompting-only decoding using paired evaluations and reasoning benchmarks.</li>
+          <li>Evaluated three instruction-tuned backbone models across reasoning benchmarks; the published paper reports larger average gains than prompting-only decoding and baseline activation steering methods.</li>
+        </ul>
+        <div class="links"><a href="https://aclanthology.org/2026.findings-emnlp.2187/">Paper ↗</a><a href="https://github.com/Tae-Won-Kim96/State-Conditioned-Steering">Code ↗</a></div>
+      </article>
+      <article class="project">
+        <div class="tag">Ongoing research</div>
+        <h3>Representation- and Utility-Score-Based Data Selection</h3>
+        <p class="sub">Investigating data selection methods using representation-space information and utility scores.</p>
       </article>
     </section>
 
-    <section id="focus" class="shell">
-      <div class="section-title">
-        <h2>Research focus</h2>
-        <p>I am building toward controllable, interpretable, and more reliable inference-time behavior in language models.</p>
-      </div>
-      <div class="grid3">
-        <article class="card mini">
-          <div class="icon">↗</div>
-          <h4>Inference-time intervention</h4>
-          <p>Changing model behavior at generation time without retraining the full backbone.</p>
-        </article>
-        <article class="card mini">
-          <div class="icon">≈</div>
-          <h4>Reasoning-state analysis</h4>
-          <p>Studying how internal representations evolve across multi-step reasoning trajectories.</p>
-        </article>
-        <article class="card mini">
-          <div class="icon">◎</div>
-          <h4>Controlled evaluation</h4>
-          <p>Using matched baselines, local diagnostics, directional controls, and ablations to isolate intervention effects.</p>
-        </article>
+    <section id="publication">
+      <h2>Publication</h2>
+      <div class="pub">
+        <p class="title">Conditioning Activation Interventions on Evolving Reasoning States in Large Language Models</p>
+        <p><strong>Tae-Won Kim</strong>, Hee-Dong Kim, Jumin Han, and Seong-Whan Lee.</p>
+        <p>Findings of the Association for Computational Linguistics: EMNLP 2026, pp. 46826–46846.</p>
+        <div class="links"><a href="https://aclanthology.org/2026.findings-emnlp.2187/">ACL Anthology ↗</a><a href="https://aclanthology.org/2026.findings-emnlp.2187.pdf">PDF ↗</a></div>
       </div>
     </section>
 
-    <section id="publications" class="shell">
-      <div class="section-title">
-        <h2>Publication</h2>
-        <p>Selected public research and technical work.</p>
-      </div>
-      <article class="card pub">
-        <div class="pub-year">2026</div>
-        <div>
-          <h4>Conditioning Activation Interventions on Evolving Reasoning States in Large Language Models</h4>
-          <p>T.-W. Kim, H.-D. Kim, J. Han, and S.-W. Lee · Findings of EMNLP 2026</p>
-        </div>
-      </article>
-    </section>
-
-    <section class="shell">
-      <div class="split">
-        <article class="card info">
-          <h4>Research methods</h4>
-          <ul>
-            <li>Activation steering and additive interventions</li>
-            <li>Hidden-state and representation analysis</li>
-            <li>Reasoning benchmark evaluation</li>
-            <li>Control experiments and ablation design</li>
-          </ul>
-        </article>
-        <article class="card info" id="contact">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:taewon_kim@korea.ac.kr">taewon_kim@korea.ac.kr</a></li>
-            <li><a href="https://github.com/Tae-Won-Kim96" target="_blank" rel="noreferrer">github.com/Tae-Won-Kim96 ↗</a></li>
-            <li>Korea University · PRML Lab · Seoul, Korea</li>
-          </ul>
-        </article>
+    <section id="skills">
+      <h2>Research Methods &amp; Tools</h2>
+      <div class="skills">
+        <strong>Programming</strong><span>Python; end-to-end research experiment pipelines</span>
+        <strong>LLM research</strong><span>Activation steering, hidden-state analysis, inference-time intervention, representation-space analysis</span>
+        <strong>Evaluation</strong><span>Reasoning benchmarks, paired comparisons, control experiments, and ablations</span>
       </div>
     </section>
+    <div class="foot">Research resume · Updated October 2026</div>
   </main>
-
-  <footer>
-    <div class="shell footer-inner">
-      <div>© 2026 Tae-Won Kim</div>
-      <div class="mono">Research profile · public information only</div>
-    </div>
-  </footer>
 </body>
 </html>
