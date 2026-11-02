@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tae-Won Kim — AI Research</title>
-  <meta name="description" content="Tae-Won Kim — AI researcher at Korea University PRML Lab. Research on inference-time control, activation steering, and LLM reasoning." />
+  <meta name="description" content="Tae-Won Kim studies LLM reasoning, internal representations, activation interventions, and data selection for efficient instruction tuning at Korea University PRML Lab." />
   <meta property="og:title" content="Tae-Won Kim — AI Research" />
-  <meta property="og:description" content="Inference-time control and reasoning in large language models." />
+  <meta property="og:description" content="LLM reasoning, representation analysis, and efficient instruction tuning." />
   <meta property="og:type" content="website" />
   <style>
     :root{
@@ -64,6 +64,7 @@
     .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
     .chip{font-size:13px;color:#b8c6ca;border:1px solid var(--line);padding:8px 11px;border-radius:10px;background:rgba(255,255,255,.02)}
     section{padding:44px 0}
+    section[id],article[id]{scroll-margin-top:84px}
     .section-title{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}
     .section-title h2{margin:0;font-size:clamp(30px,4vw,46px);letter-spacing:-.035em}
     .section-title p{margin:0;color:var(--muted);max-width:560px}
@@ -95,6 +96,11 @@
     .update-line:after{content:"";position:absolute;inset:-3px auto -3px -20%;width:30%;background:linear-gradient(90deg,transparent,white,transparent);opacity:.6;animation:sweep 2.2s linear infinite}
     @keyframes sweep{to{left:110%}}
     .caption{margin-top:26px;color:#a9bac0;font-size:14px}
+    .ongoing{margin-top:18px;padding:32px 38px;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}
+    .ongoing h3{font-size:clamp(25px,3vw,36px);letter-spacing:-.035em;line-height:1.13;margin:10px 0 13px}
+    .ongoing p{color:#b9c9ce;margin:0}
+    .ongoing-note{border-left:1px solid var(--line);padding-left:28px;color:#c9d7db;font-size:15px}
+    .ongoing-note strong{color:var(--green);display:block;margin-bottom:8px}
     .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .mini{padding:26px;min-height:220px}
     .mini h4{font-size:21px;margin:12px 0 10px;letter-spacing:-.025em}
@@ -104,6 +110,7 @@
     .pub-year{font-weight:900;color:var(--cyan);min-width:56px}
     .pub h4{margin:0 0 8px;font-size:19px;line-height:1.35}
     .pub p{margin:0;color:var(--muted)}
+    .pub a{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
     .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .info{padding:28px}
     .info h4{margin:0 0 12px;font-size:21px}
@@ -116,6 +123,8 @@
       .nav-links{display:none}
       .hero{padding-top:76px}
       .featured,.split{grid-template-columns:1fr}
+      .ongoing{grid-template-columns:1fr;padding:28px}
+      .ongoing-note{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}
       .feature-visual{min-height:380px}
       .grid3{grid-template-columns:1fr}
       .metric-row{grid-template-columns:1fr}
@@ -132,7 +141,7 @@
       <div class="nav-links">
         <a href="#research">Research</a>
         <a href="#focus">Focus</a>
-        <a href="#publications">Publication</a>
+        <a href="#publications">Publications</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -142,7 +151,7 @@
     <header class="hero shell">
       <div class="kicker"><span class="dot"></span> Korea University · PRML Lab</div>
       <h1 class="gradient-text">Tae-Won Kim</h1>
-      <p class="hero-copy">I work on <strong>inference-time control and reasoning in large language models</strong>, with a focus on activation steering and model-state-aware intervention.</p>
+      <p class="hero-copy">I study <strong>how internal representations shape LLM reasoning</strong> and how those signals can guide both inference-time interventions and efficient training-data selection.</p>
       <div class="actions">
         <a class="btn primary" href="#research">Featured research ↓</a>
         <a class="btn" href="mailto:taewon_kim@korea.ac.kr">Email</a>
@@ -151,15 +160,15 @@
       <div class="chips">
         <span class="chip">LLM Reasoning</span>
         <span class="chip">Activation Steering</span>
-        <span class="chip">Inference-time Control</span>
         <span class="chip">Representation Analysis</span>
+        <span class="chip">Data Selection</span>
       </div>
     </header>
 
     <section id="research" class="shell">
       <div class="section-title">
         <h2>Featured research</h2>
-        <p>A compact research profile for people I meet at demos, showcases, and conferences.</p>
+        <p>Research on model-state interventions and the data that shapes language-model behavior.</p>
       </div>
 
       <article class="card featured">
@@ -175,7 +184,7 @@
           </div>
           <div class="actions">
             <a class="btn primary" href="https://github.com/Tae-Won-Kim96/State-Conditioned-Steering" target="_blank" rel="noreferrer">View code ↗</a>
-            <a class="btn" href="#publications">Publication</a>
+            <a class="btn" href="#publications">Paper</a>
           </div>
         </div>
 
@@ -207,12 +216,24 @@
           <p class="caption">At the next checkpoint, the model state is read again and the update is refreshed. The intervention changes with the trajectory rather than staying fixed.</p>
         </div>
       </article>
+
+      <article class="card ongoing">
+        <div>
+          <div class="label">Research in progress</div>
+          <h3>Choosing useful training data without target-task examples.</h3>
+          <p>I am studying how gradient-based signals from a small proxy model can identify useful instruction-tuning data, and whether those selections remain effective on larger models and across model families.</p>
+        </div>
+        <div class="ongoing-note">
+          <strong>Current question</strong>
+          Which properties of selected data explain its utility? I am testing how gradient alignment and the structure of the selected set relate to downstream performance. Results remain specific to the models and benchmarks evaluated so far.
+        </div>
+      </article>
     </section>
 
     <section id="focus" class="shell">
       <div class="section-title">
         <h2>Research focus</h2>
-        <p>I am building toward controllable, interpretable, and more reliable inference-time behavior in language models.</p>
+        <p>From internal model states to useful training examples, I use controlled experiments to understand what changes LLM behavior.</p>
       </div>
       <div class="grid3">
         <article class="card mini">
@@ -222,26 +243,26 @@
         </article>
         <article class="card mini">
           <div class="icon">≈</div>
-          <h4>Reasoning-state analysis</h4>
-          <p>Studying how internal representations evolve across multi-step reasoning trajectories.</p>
+          <h4>Representation analysis</h4>
+          <p>Studying how internal states evolve during multi-step reasoning and relate to model behavior.</p>
         </article>
         <article class="card mini">
           <div class="icon">◎</div>
-          <h4>Controlled evaluation</h4>
-          <p>Using matched baselines, local diagnostics, directional controls, and ablations to isolate intervention effects.</p>
+          <h4>Data utility for fine-tuning</h4>
+          <p>Understanding which instruction examples help a model learn, without relying on target-task data.</p>
         </article>
       </div>
     </section>
 
     <section id="publications" class="shell">
       <div class="section-title">
-        <h2>Publication</h2>
-        <p>Selected public research and technical work.</p>
+        <h2>Publications</h2>
+        <p>Peer-reviewed work on inference-time interventions in language models.</p>
       </div>
       <article class="card pub">
         <div class="pub-year">2026</div>
         <div>
-          <h4>Conditioning Activation Interventions on Evolving Reasoning States in Large Language Models</h4>
+          <h4><a href="https://aclanthology.org/2026.findings-emnlp.2187/" target="_blank" rel="noreferrer">Conditioning Activation Interventions on Evolving Reasoning States in Large Language Models ↗</a></h4>
           <p>T.-W. Kim, H.-D. Kim, J. Han, and S.-W. Lee · Findings of EMNLP 2026</p>
         </div>
       </article>
@@ -250,12 +271,11 @@
     <section class="shell">
       <div class="split">
         <article class="card info">
-          <h4>Research methods</h4>
+          <h4>Background</h4>
           <ul>
-            <li>Activation steering and additive interventions</li>
-            <li>Hidden-state and representation analysis</li>
-            <li>Reasoning benchmark evaluation</li>
-            <li>Control experiments and ablation design</li>
+            <li>Integrated M.S./Ph.D. student, Korea University PRML Lab (2024–present; expected 2029)</li>
+            <li>B.S. in Computer Science, Korea University (2023)</li>
+            <li>Interdisciplinary major in Language, Brain &amp; Computer</li>
           </ul>
         </article>
         <article class="card info" id="contact">
